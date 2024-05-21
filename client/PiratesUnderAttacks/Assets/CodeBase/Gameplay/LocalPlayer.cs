@@ -6,8 +6,16 @@ namespace CodeBase.Gameplay
     {
         [SerializeField] private Ship _ship;
 
-        private void Update() => 
-            _ship.LookAt(_ship.transform.position + InputAxis());
+        private Camera _camera;
+
+        private void Awake() => 
+            _camera = Camera.main;
+
+        private void Update()
+        {
+            var inputRelativeByCamera = _camera.transform.TransformDirection(InputAxis().normalized);
+            _ship.LookAt(_ship.transform.position + inputRelativeByCamera);
+        }
 
         private static Vector3 InputAxis() =>
             new(
