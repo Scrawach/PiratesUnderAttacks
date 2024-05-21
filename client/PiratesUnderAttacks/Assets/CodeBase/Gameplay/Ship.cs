@@ -33,6 +33,7 @@ namespace CodeBase.Gameplay
         {
             var timeStep = Time.deltaTime * _rotationSpeed;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, timeStep);
+            _targetRotation = transform.rotation;
         }
     }
 }

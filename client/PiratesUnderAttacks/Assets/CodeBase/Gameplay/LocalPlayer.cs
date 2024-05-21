@@ -6,10 +6,8 @@ namespace CodeBase.Gameplay
     {
         [SerializeField] private Ship _ship;
 
-        private void Update()
-        {
+        private void Update() => 
             _ship.LookAt(_ship.transform.position + InputAxis());
-        }
 
         private static Vector3 InputAxis() =>
             new(
