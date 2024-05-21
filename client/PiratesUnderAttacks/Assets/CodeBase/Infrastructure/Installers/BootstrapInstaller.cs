@@ -2,7 +2,7 @@ using CodeBase.Infrastructure.AssetManagement;
 using Reflex.Core;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.Installers
 {
     public class BootstrapInstaller : MonoBehaviour, IInstaller
     {
