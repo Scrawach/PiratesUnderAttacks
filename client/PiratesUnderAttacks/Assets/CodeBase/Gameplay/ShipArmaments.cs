@@ -12,6 +12,7 @@ namespace CodeBase.Gameplay
         {
             foreach (var shootPoint in _shootPoints) 
                 CreateProjectile(shootPoint);
+            
             return true;
         }
 
