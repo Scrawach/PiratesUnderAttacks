@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace CodeBase.Gameplay
 {
@@ -7,6 +8,8 @@ namespace CodeBase.Gameplay
         [SerializeField] private Ship _ship;
         [SerializeField] private Transform _body;
 
+        private float _previousRightRotation;
+        
         private void Update()
         {
             var targetDirection = _ship.RotationDirection;
@@ -22,7 +25,22 @@ namespace CodeBase.Gameplay
             }
             else
             {
-                _body.localEulerAngles = new Vector3(0, 0, Mathf.Sign(angle) * -25);
+                _previousRightRotation = Mathf.Sign(angle);
+                var targetAngle = 25 * _previousRightRotation;
+                StartCoroutine(Rotating(targetAngle));
+            }
+        }
+
+        private IEnumerator Rotating(float targetAngle)
+        {
+            var startAngle = transform.eulerAngles.z;
+            var t = 0f;
+            while (t < 1f)
+            {
+                t += Time.deltaTime;
+                var angle = Mathf.Lerp(startAngle, targetAngle, t);
+                _body.localEulerAngles = new Vector3(0, 0, angle);
+                yield return null;
             }
         }
     }
