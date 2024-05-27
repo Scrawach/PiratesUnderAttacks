@@ -12,6 +12,7 @@ namespace CodeBase.Gameplay
         
         private void Update()
         {
+            return;
             var targetDirection = _ship.RotationDirection;
             var currentDirection = _ship.transform.forward;
             

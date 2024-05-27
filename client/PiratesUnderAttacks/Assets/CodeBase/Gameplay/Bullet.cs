@@ -4,6 +4,7 @@ namespace CodeBase.Gameplay
 {
     public class Bullet : MonoBehaviour
     {
+        [SerializeField] private int _damage;
         [SerializeField] private float _speed;
         [SerializeField] private float _effectiveDistance;
         [SerializeField] private float _gravityDamp;
@@ -20,6 +21,13 @@ namespace CodeBase.Gameplay
             
             transform.Translate(movement, Space.World);
             _elapsedDistance += moveStep;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log($"{other}");
+            if (other.TryGetComponent(out Health health))
+                health.TakeDamage(_damage);
         }
     }
 }
