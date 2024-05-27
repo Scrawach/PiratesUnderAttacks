@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Gameplay
@@ -10,19 +11,31 @@ namespace CodeBase.Gameplay
         private Quaternion _targetRotation;
         
         public Vector3 RotationDirection { get; private set; }
+        
         public Vector3 Movement { get; private set; }
+        
+        public bool IsMoving { get; private set; }
 
         public void LookAt(Vector3 target)
         {
             var direction = target - transform.position;
 
-            if (direction != Vector3.zero) 
+            if (direction != Vector3.zero)
+            {
+                IsMoving = true;
                 _targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            }
+            else
+            {
+                IsMoving = false;
+            }
         }
         
         private void Update()
         {
-            ProcessMovement();
+            if (IsMoving)
+                ProcessMovement();
+            
             ProcessRotation();
         }
 
