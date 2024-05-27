@@ -5493,6 +5493,8 @@ GameObject:
   - component: {fileID: 1437127666734805931}
   - component: {fileID: 5945637169905632820}
   - component: {fileID: 6103247133904462508}
+  - component: {fileID: 1614099507176881021}
+  - component: {fileID: 6526501949123769030}
   m_Layer: 0
   m_Name: Debug Ship
   m_TagString: Untagged
@@ -5676,6 +5678,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ship: {fileID: 55013461577447756}
   _animator: {fileID: 3228367014320201636}
+--- !u!114 &1614099507176881021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651007870647741285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c9da46176141f8a0e12ecfb8a03ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skins:
+  - {fileID: 2994800991444098388}
+  - {fileID: 8325854203676306743}
+--- !u!114 &6526501949123769030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651007870647741285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cb157246524e288d6a3a2413d86d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 1614099507176881021}
+  _skin: {fileID: 2100000, guid: c18d5716e504da7e38c15a2878c137ce, type: 2}
 --- !u!1 &9202030198450605585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6103,6 +6134,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33fab897ebcfd2c8eb123cbcdc5acbe5, type: 3}
   m_PrefabInstance: {fileID: 4145160545058239781}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &8325854203676306743 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3887185075125053422, guid: 33fab897ebcfd2c8eb123cbcdc5acbe5, type: 3}
+  m_PrefabInstance: {fileID: 4145160545058239781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5885585244565066185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6280,6 +6316,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3228367014320201636}
   m_SourcePrefab: {fileID: 100100000, guid: ed878caf1c91486af93b787cf6148fec, type: 3}
+--- !u!137 &2994800991444098388 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3887185075125053422, guid: ed878caf1c91486af93b787cf6148fec, type: 3}
+  m_PrefabInstance: {fileID: 7170392953024398662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7208260912976143021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed878caf1c91486af93b787cf6148fec, type: 3}
