@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Gameplay
 {
-    public class HealthDebug : MonoBehaviour
+    public class ShipDeath : MonoBehaviour
     {
         [SerializeField] private Health _health;
 
+        public event Action Happened;
+        
         private void OnEnable() => 
             _health.Changed += OnHealthChanged;
 
@@ -14,13 +17,8 @@ namespace CodeBase.Gameplay
 
         private void OnHealthChanged()
         {
-            Debug.Log($"{_health.Current} / {_health.Max} ({_health.Ratio})");
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-                _health.TakeDamage(10);
+            if (_health.Current <= 0)
+                Happened?.Invoke();
         }
     }
 }
