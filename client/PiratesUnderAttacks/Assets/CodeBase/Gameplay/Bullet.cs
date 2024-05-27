@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Gameplay
@@ -8,7 +9,8 @@ namespace CodeBase.Gameplay
         [SerializeField] private float _speed;
         [SerializeField] private float _effectiveDistance;
         [SerializeField] private float _gravityDamp;
-
+        [SerializeField] private ParticleSystem _vfx;
+        
         private float _elapsedDistance;
 
         private Vector3 _startMovement;
@@ -31,7 +33,11 @@ namespace CodeBase.Gameplay
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Health health))
+            {
                 health.TakeDamage(_damage);
+                Instantiate(_vfx, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 }
