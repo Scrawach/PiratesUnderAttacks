@@ -10,6 +10,7 @@ namespace CodeBase.Gameplay
         private Quaternion _targetRotation;
         
         public Vector3 RotationDirection { get; private set; }
+        public Vector3 Movement { get; private set; }
 
         public void LookAt(Vector3 target)
         {
@@ -28,7 +29,8 @@ namespace CodeBase.Gameplay
         private void ProcessMovement()
         {
             var timeStep = Time.deltaTime * _speed;
-            transform.Translate(transform.forward * timeStep, Space.World);
+            Movement = transform.forward * timeStep;
+            transform.Translate(Movement, Space.World);
         }
 
         private void ProcessRotation()

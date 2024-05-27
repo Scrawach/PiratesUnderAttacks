@@ -10,11 +10,16 @@ namespace CodeBase.Gameplay
         [SerializeField] private float _gravityDamp;
 
         private float _elapsedDistance;
-        
+
+        private Vector3 _startMovement;
+
+        public void Launch(Vector3 startMovement) => 
+            _startMovement = startMovement;
+
         private void Update()
         {
             var moveStep = Time.deltaTime * _speed;
-            var movement = transform.forward * moveStep;
+            var movement = _startMovement + transform.forward * moveStep;
 
             if (_elapsedDistance >= _effectiveDistance)
                 movement += (Physics.gravity * Time.deltaTime) / _gravityDamp;
@@ -25,7 +30,6 @@ namespace CodeBase.Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"{other}");
             if (other.TryGetComponent(out Health health))
                 health.TakeDamage(_damage);
         }
