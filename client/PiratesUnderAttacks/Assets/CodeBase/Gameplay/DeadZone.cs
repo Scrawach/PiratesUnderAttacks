@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.UI;
 using UnityEngine;
 
 namespace CodeBase.Gameplay
@@ -8,11 +9,12 @@ namespace CodeBase.Gameplay
     {
         [SerializeField] private float _tickDuration = 1f;
         [SerializeField] private int _damageForTick = 10;
+        [SerializeField] private UIRoot _root;
         
         private readonly List<Health> _targets = new();
 
         private float _elapsedTime;
-        
+
         private void Update()
         {
             _elapsedTime += Time.deltaTime;
@@ -30,12 +32,14 @@ namespace CodeBase.Gameplay
         {
             if (other.TryGetComponent(out Health health))
                 _targets.Add(health);
+            _root.ShowDeadZoneWarning();
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Health health))
                 _targets.Remove(health);
+            _root.HideDeadZoneWarning();
         }
     }
 }
