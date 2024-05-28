@@ -1025,8 +1025,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 55013461577447756, guid: d4689b01adebc288683151e38c2b706e, type: 3}
+      propertyPath: _speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 55013461577447756, guid: d4689b01adebc288683151e38c2b706e, type: 3}
       propertyPath: _rotationSpeed
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5917198582758355764, guid: d4689b01adebc288683151e38c2b706e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1068,10 +1072,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6526501949123769030, guid: d4689b01adebc288683151e38c2b706e, type: 3}
-      propertyPath: _skin
-      value: 
-      objectReference: {fileID: 2100000, guid: 0d655be80e7f05d91a38fe1616f5a457, type: 2}
     - target: {fileID: 6651007870647741285, guid: d4689b01adebc288683151e38c2b706e, type: 3}
       propertyPath: m_Name
       value: Debug Ship

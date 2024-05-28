@@ -24,7 +24,10 @@ namespace CodeBase.Gameplay
             var movement = _startMovement + transform.forward * moveStep;
 
             if (_elapsedDistance >= _effectiveDistance)
-                movement += (Physics.gravity * Time.deltaTime) / _gravityDamp;
+            {
+                Instantiate(_vfx, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
             
             transform.Translate(movement, Space.World);
             _elapsedDistance += moveStep;

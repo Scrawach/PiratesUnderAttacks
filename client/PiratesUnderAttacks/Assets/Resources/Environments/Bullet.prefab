@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 2
-  _speed: 15
+  _speed: 20
   _effectiveDistance: 15
   _gravityDamp: 2
   _vfx: {fileID: 482801435431571935, guid: 95275c8e9ac517277b474f0ffe018412, type: 3}

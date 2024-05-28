@@ -7,7 +7,7 @@ namespace CodeBase.UI
     public class HealthBar : MonoBehaviour
     {
         [SerializeField] private Health _health;
-        [SerializeField] private RatioBar ratioBar;
+        [SerializeField] private RatioBar _ratioBar;
         [SerializeField] private TextMeshProUGUI _healthText;
 
         private void OnEnable() => 
@@ -18,8 +18,11 @@ namespace CodeBase.UI
 
         private void OnHealthChanged()
         {
-            ratioBar.Fill(_health.Ratio);
+            _ratioBar.Fill(_health.Ratio);
             _healthText.text = _health.Current.ToString();
         }
+
+        public void ChangeColor(Color target) => 
+            _ratioBar.ChangeColor(target);
     }
 }

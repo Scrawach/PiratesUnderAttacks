@@ -9,7 +9,7 @@ namespace CodeBase.Gameplay
         private void Awake() => 
             _camera = Camera.main;
 
-        private void Update() => 
+        private void LateUpdate() => 
             transform.LookAt(_camera.transform);
     }
 }

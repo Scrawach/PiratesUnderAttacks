@@ -39,5 +39,8 @@ namespace CodeBase.UI
 
             _current.fillAmount = target;
         }
+
+        public void ChangeColor(Color target) => 
+            _target.color = target;
     }
 }
