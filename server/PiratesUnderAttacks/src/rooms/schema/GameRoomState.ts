@@ -6,7 +6,7 @@ export class GameRoomState extends Schema {
 
   @type({map: PlayerSchema}) players = new MapSchema<PlayerSchema>();
 
-  availableSkinIds = new Set<number>([0, 1]);
+  availableSkinIds = new Set<number>([0, 1, 2, 3, 4, 5]);
   spawnPoints = [new Vector2Schema(0, 35), new Vector2Schema(0, -35), new Vector2Schema(35, 0), new Vector2Schema(-35, 0)];
   spawnPointAngles = [180, 0, -90, 90];
 
@@ -54,9 +54,15 @@ export class GameRoomState extends Schema {
     if (this.availableSkinIds.size < 1)
       return 0;
 
+    const size = this.availableSkinIds.size;
+    const randomIndex = Math.floor(Math.random() * size);
     var iterator = this.availableSkinIds.values();
-    var first = iterator.next();
-    var value = first.value
+
+    for (var i: number = 0; i < randomIndex; i++) {
+      var first = iterator.next();
+      var value = first.value
+    }
+
     this.availableSkinIds.delete(value)
     return value;
   }

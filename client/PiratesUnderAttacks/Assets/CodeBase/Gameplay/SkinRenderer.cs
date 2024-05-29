@@ -9,8 +9,12 @@ namespace CodeBase.Gameplay
         [SerializeField] private List<Renderer> _skins;
         [SerializeField] private HealthBar _healthBar;
 
+        public Material Current { get; private set; }
+        
         public void ChangeTo(Material target)
         {
+            Current = target;
+            
             foreach (var skin in _skins) 
                 skin.material = target;
             

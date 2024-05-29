@@ -8,6 +8,7 @@ namespace CodeBase.Gameplay
 {
     public class ShipArmaments : MonoBehaviour
     {
+        [SerializeField] private SkinRenderer _skinRenderer;
         [SerializeField] private UniqueId _uniqueId;
         [SerializeField] private Ship _ship;
         [SerializeField] private List<ShipCannon> _cannons;
@@ -45,7 +46,7 @@ namespace CodeBase.Gameplay
         private Bullet CreateProjectile(Transform point)
         {
             var bullet = Instantiate(_projectilePrefab, point.position, point.rotation);
-            bullet.Launch(_uniqueId.Value, _ship.Movement);
+            bullet.Launch(_uniqueId.Value, _ship.Movement, _skinRenderer.Current.color);
             return bullet;
         }
     }
