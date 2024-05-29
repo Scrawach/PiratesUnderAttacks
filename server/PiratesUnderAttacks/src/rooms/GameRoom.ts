@@ -1,5 +1,6 @@
 import { Room, Client } from "@colyseus/core";
 import { GameRoomState } from "./schema/GameRoomState";
+import { Vector2Schema } from "./schema/Vector2Schema";
 
 export class GameRoom extends Room<GameRoomState> {
   maxClients = 4;
@@ -9,7 +10,10 @@ export class GameRoom extends Room<GameRoomState> {
     this.setState(new GameRoomState());
 
     this.onMessage("move", (client, data) => {
-      this.state.movePlayer(client.sessionId, data.position, data.rotation, data.input);
+      const position = new Vector2Schema(data.position.x, data.position.y);
+      const rotation = data.rotation;
+      const input = new Vector2Schema(data.input.x, data.input.y);
+      this.state.movePlayer(client.sessionId, position, rotation, input);
     });
   }
 

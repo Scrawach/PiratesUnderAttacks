@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CodeBase.Generated;
+using CodeBase.Network.Extensions;
 using CodeBase.Network.Services.Handlers;
 using Colyseus;
 using UnityEngine;
@@ -22,9 +23,9 @@ namespace CodeBase.Network.Services
         {
             var message = new Dictionary<string, object>()
             {
-                [nameof(position)] = position,
-                [nameof(rotation)] = rotation,
-                [nameof(input)] = input
+                [nameof(position)] = position.ToVector2(),
+                [nameof(rotation)] = rotation.y,
+                [nameof(input)] = input.ToVector2()
             };
 
             _room.Send(MovementEndPoint, message);

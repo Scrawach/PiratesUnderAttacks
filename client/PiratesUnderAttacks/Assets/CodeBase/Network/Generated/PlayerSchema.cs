@@ -16,8 +16,8 @@ namespace CodeBase.Generated {
 		[Type(1, "ref", typeof(Vector2Schema))]
 		public Vector2Schema position = new Vector2Schema();
 
-		[Type(2, "ref", typeof(Vector2Schema))]
-		public Vector2Schema rotation = new Vector2Schema();
+		[Type(2, "float32")]
+		public float rotation = default(float);
 
 		[Type(3, "ref", typeof(Vector2Schema))]
 		public Vector2Schema input = new Vector2Schema();
@@ -56,12 +56,12 @@ namespace CodeBase.Generated {
 			};
 		}
 
-		protected event PropertyChangeHandler<Vector2Schema> __rotationChange;
-		public Action OnRotationChange(PropertyChangeHandler<Vector2Schema> __handler, bool __immediate = true) {
+		protected event PropertyChangeHandler<float> __rotationChange;
+		public Action OnRotationChange(PropertyChangeHandler<float> __handler, bool __immediate = true) {
 			if (__callbacks == null) { __callbacks = new SchemaCallbacks(); }
 			__callbacks.AddPropertyCallback(nameof(this.rotation));
 			__rotationChange += __handler;
-			if (__immediate && this.rotation != null) { __handler(this.rotation, null); }
+			if (__immediate && this.rotation != default(float)) { __handler(this.rotation, default(float)); }
 			return () => {
 				__callbacks.RemovePropertyCallback(nameof(rotation));
 				__rotationChange -= __handler;
@@ -108,7 +108,7 @@ namespace CodeBase.Generated {
 			switch (change.Field) {
 				case nameof(username): __usernameChange?.Invoke((string) change.Value, (string) change.PreviousValue); break;
 				case nameof(position): __positionChange?.Invoke((Vector2Schema) change.Value, (Vector2Schema) change.PreviousValue); break;
-				case nameof(rotation): __rotationChange?.Invoke((Vector2Schema) change.Value, (Vector2Schema) change.PreviousValue); break;
+				case nameof(rotation): __rotationChange?.Invoke((float) change.Value, (float) change.PreviousValue); break;
 				case nameof(input): __inputChange?.Invoke((Vector2Schema) change.Value, (Vector2Schema) change.PreviousValue); break;
 				case nameof(skinId): __skinIdChange?.Invoke((byte) change.Value, (byte) change.PreviousValue); break;
 				case nameof(score): __scoreChange?.Invoke((ushort) change.Value, (ushort) change.PreviousValue); break;

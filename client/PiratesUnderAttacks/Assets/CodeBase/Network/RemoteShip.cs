@@ -13,18 +13,33 @@ namespace CodeBase.Network
         [SerializeField] private Ship _ship;
         
         private readonly List<Action> _disposes = new();
+        private Vector3 _previousInput;
         
         public void Initialize(PlayerSchema schema)
         {
             schema.OnPositionChange(OnPositionChanged).AddTo(_disposes);
             schema.OnRotationChange(OnRotationChanged).AddTo(_disposes);
+            schema.OnInputChange(OnInputChanged).AddTo(_disposes);
         }
         
-        private void OnPositionChanged(Vector2Schema current, Vector2Schema previous) => 
-            _ship.transform.position = new Vector3(current.x, 0f, current.y);
+        private void OnPositionChanged(Vector2Schema current, Vector2Schema previous)
+        {
+            var distance = Vector3.Distance(current.ToVector3(), _ship.transform.position);
 
-        private void OnRotationChanged(Vector2Schema current, Vector2Schema previous) => 
-            _ship.transform.rotation = Quaternion.LookRotation(current.ToVector3());
+            if (distance > 1f) 
+                _ship.transform.position = new Vector3(current.x, 0f, current.y);
+        }
+
+        private void OnRotationChanged(float current, float previous)
+        {
+            //_ship.transform.eulerAngles = new Vector3(0f, current, 0f);
+        }
+
+        private void OnInputChanged(Vector2Schema current, Vector2Schema previous) => 
+            _previousInput = current.ToVector3().normalized;
+
+        private void Update() => 
+            _ship.LookAt(_ship.transform.position + _previousInput);
 
         private void OnDestroy()
         {

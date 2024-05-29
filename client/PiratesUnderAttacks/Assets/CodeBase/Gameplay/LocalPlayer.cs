@@ -23,7 +23,7 @@ namespace CodeBase.Gameplay
         {
             var inputRelativeByCamera = _camera.transform.TransformDirection(_input.InputAxis());
             inputRelativeByCamera.y = 0;
-            _ship.LookAt(_ship.transform.position + inputRelativeByCamera.normalized);
+            _ship.LookAt(_ship.transform.position + _input.InputAxis().normalized);
 
             if (_input.IsFire())
                 _armaments.TryFire();

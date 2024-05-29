@@ -20,7 +20,7 @@ export class GameRoomState extends Schema {
     return player;
   }
 
-  movePlayer(sessionId: string, position: Vector2Schema, rotation: Vector2Schema, input: Vector2Schema) {
+  movePlayer(sessionId: string, position: Vector2Schema, rotation: number, input: Vector2Schema) {
     const player = this.players.get(sessionId);
     player.position = position;
     player.rotation = rotation;
