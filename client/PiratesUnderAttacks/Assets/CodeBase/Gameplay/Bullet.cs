@@ -8,7 +8,6 @@ namespace CodeBase.Gameplay
         [SerializeField] private int _damage;
         [SerializeField] private float _speed;
         [SerializeField] private float _effectiveDistance;
-        [SerializeField] private float _gravityDamp;
         [SerializeField] private ParticleSystem _vfx;
         
         private float _elapsedDistance;
@@ -23,12 +22,9 @@ namespace CodeBase.Gameplay
             var moveStep = Time.deltaTime * _speed;
             var movement = _startMovement + transform.forward * moveStep;
 
-            if (_elapsedDistance >= _effectiveDistance)
-            {
-                Instantiate(_vfx, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
-            
+            if (_elapsedDistance >= _effectiveDistance) 
+                ProcessBulletDeath();
+
             transform.Translate(movement, Space.World);
             _elapsedDistance += moveStep;
         }
@@ -38,9 +34,14 @@ namespace CodeBase.Gameplay
             if (other.TryGetComponent(out Health health))
             {
                 health.TakeDamage(_damage);
-                Instantiate(_vfx, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                ProcessBulletDeath();
             }
+        }
+
+        private void ProcessBulletDeath()
+        {
+            Instantiate(_vfx, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
