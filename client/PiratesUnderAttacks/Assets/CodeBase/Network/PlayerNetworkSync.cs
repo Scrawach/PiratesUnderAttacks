@@ -25,19 +25,24 @@ namespace CodeBase.Network
         private void OnEnable()
         {
             _armaments.Fired += OnArmamentsFired;
-            _health.ChangedByAttacker += OnHealthChanged;
+            _health.ChangedByAttacker += OnHealthChangedByAttacker;
+            _health.Changed += OnHealthChanged;
         }
         
         private void OnDisable()
         {
             _armaments.Fired -= OnArmamentsFired;
-            _health.ChangedByAttacker -= OnHealthChanged;
+            _health.ChangedByAttacker -= OnHealthChangedByAttacker;
+            _health.Changed -= OnHealthChanged;
         }
+
+        private void OnHealthChanged() => 
+            _transmitter.SendTakeDamage(_health.Current);
 
         private void OnArmamentsFired() => 
             _transmitter.SendFire();
         
-        private void OnHealthChanged(string attackerId) => 
+        private void OnHealthChangedByAttacker(string attackerId) => 
             _transmitter.SendTakeDamage(attackerId, _health.Current);
 
         private void Update() => 

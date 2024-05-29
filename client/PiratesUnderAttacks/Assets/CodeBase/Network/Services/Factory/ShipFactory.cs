@@ -50,7 +50,7 @@ namespace CodeBase.Network.Services.Factory
         {
             var prefab = _assets.Load<GameObject>(pathToPrefab);
             var skinMaterial = _skinStaticData.ForShipSkin(schema.skinId);
-            var ship = Object.Instantiate(prefab, schema.position.ToVector3(), Quaternion.identity);
+            var ship = Object.Instantiate(prefab, schema.position.ToVector3(), Quaternion.Euler(0, schema.rotation, 0));
             
             _injector.Inject(ship);
             

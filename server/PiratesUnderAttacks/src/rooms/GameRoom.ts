@@ -24,17 +24,24 @@ export class GameRoom extends Room<GameRoomState> {
     this.onMessage("takeDamage", (client, data) => {
       console.log(data)
       const targetId = client.sessionId;
-      const attackerId = data.attackerId;
-      const currentHealth = data.currentHealth;
-
       const targetPlayer = this.state.players.get(targetId);
+      const currentHealth = data.currentHealth;
       targetPlayer.currentHealth = currentHealth;
+      
+      if (data.attackerId) {
+        const attackerId = data.attackerId;
 
-      if (targetPlayer.currentHealth <= 0) {
-        this.state.killPlayerBySomeone(targetId, attackerId);
-        this.respawn(targetId);
+        if (targetPlayer.currentHealth <= 0) {
+          this.state.killPlayerBySomeone(targetId, attackerId);
+        }
       }
-
+      else
+      {
+        console.log("damage from dead zone!");
+        if (targetPlayer.currentHealth <= 0) {
+          this.respawn(targetId);
+        }
+      }
     })
   }
 

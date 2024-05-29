@@ -42,5 +42,11 @@ namespace CodeBase.Network.Services
                 [nameof(attackerId)] = attackerId,
                 [nameof(currentHealth)] = currentHealth
             });
+
+        public void SendTakeDamage(int currentHealth) =>
+            _room.Send(TakeDamageEndPoint, new Dictionary<string, object>()
+            {
+                [nameof(currentHealth)] = currentHealth
+            });
     }
 }
