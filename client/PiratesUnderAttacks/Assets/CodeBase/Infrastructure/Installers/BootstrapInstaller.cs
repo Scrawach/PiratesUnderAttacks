@@ -1,3 +1,4 @@
+using Cinemachine;
 using CodeBase.Gameplay.Services;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Network.Services;
@@ -30,6 +31,7 @@ namespace CodeBase.Infrastructure.Installers
 
         private void InstallGameplayServices(ContainerBuilder builder)
         {
+            builder.AddSingleton(typeof(CameraFollow));
             builder.AddSingleton(typeof(ShipRegistry));
             builder.AddSingleton(typeof(ShipFactory));
             builder.AddSingleton(typeof(InputService));

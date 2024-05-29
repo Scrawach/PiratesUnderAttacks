@@ -1,4 +1,5 @@
 using CodeBase.Gameplay;
+using CodeBase.Gameplay.Services;
 using CodeBase.Generated;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Installers;
@@ -18,19 +19,23 @@ namespace CodeBase.Network.Services.Factory
         private readonly Injector _injector;
         private readonly ShipRegistry _registry;
         private readonly SkinStaticData _skinStaticData;
+        private readonly CameraFollow _cameraFollow;
 
-        public ShipFactory(Assets assets, Injector injector, ShipRegistry registry, SkinStaticData skinStaticData)
+        public ShipFactory(Assets assets, Injector injector, ShipRegistry registry, SkinStaticData skinStaticData, CameraFollow cameraFollow)
         {
             _assets = assets;
             _injector = injector;
             _registry = registry;
             _skinStaticData = skinStaticData;
+            _cameraFollow = cameraFollow;
         }
 
         public Ship CreatePlayerShip(string id, PlayerSchema schema)
         {
             Debug.Log($"Create player {id}");
-            return CreateShip(id, schema, PlayerShipPath);
+            var ship = CreateShip(id, schema, PlayerShipPath);
+            _cameraFollow.Follow(ship.transform);
+            return ship;
         }
 
         public Ship CreateRemoteShip(string id, PlayerSchema schema)

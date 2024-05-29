@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 0
   _speed: 20
-  _effectiveDistance: 15
+  _effectiveDistance: 30
   _vfx: {fileID: 482801435431571935, guid: 95275c8e9ac517277b474f0ffe018412, type: 3}
 --- !u!114 &7239449881816753588
 MonoBehaviour:
