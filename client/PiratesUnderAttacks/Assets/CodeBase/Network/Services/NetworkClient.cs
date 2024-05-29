@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CodeBase.Generated;
 using Colyseus;
 using Cysharp.Threading.Tasks;
@@ -29,7 +30,10 @@ namespace CodeBase.Network.Services
 
             try
             {
-                _room = await client.JoinOrCreate<GameRoomState>(GameRoomName);
+                _room = await client.JoinOrCreate<GameRoomState>(GameRoomName, new Dictionary<string, object>
+                {
+                    [nameof(username)] = username
+                });
             }
             catch (Exception exception)
             {

@@ -5464,7 +5464,7 @@ GameObject:
   - component: {fileID: 6526501949123769030}
   - component: {fileID: 3509519283330709077}
   - component: {fileID: 5160295574517570462}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Debug Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5528,8 +5528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa92a1fddb604fa0b5e4d832fb22891f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _rotationSpeed: 50
+  _speed: 8
+  _rotationSpeed: 35
 --- !u!114 &7801062196995326392
 MonoBehaviour:
   m_ObjectHideFlags: 0
