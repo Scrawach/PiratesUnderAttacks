@@ -11,10 +11,11 @@ export class PlayerSchema extends Schema {
   @type("uint8") currentHealth: number = 100;
   @type("uint8") totalHealth: number = 100;
 
-  constructor(username: string, position: Vector2Schema, skinId: number, score: number) {
+  constructor(username: string, position: Vector2Schema, angle: number, skinId: number, score: number) {
     super();
     this.username = username;
     this.position = position;
+    this.rotation = angle;
     this.skinId = skinId;
     this.score = score;
   }

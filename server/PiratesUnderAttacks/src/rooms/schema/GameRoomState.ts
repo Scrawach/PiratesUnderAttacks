@@ -7,15 +7,19 @@ export class GameRoomState extends Schema {
   @type({map: PlayerSchema}) players = new MapSchema<PlayerSchema>();
 
   availableSkinIds = new Set<number>([0, 1]);
+  spawnPoints = [new Vector2Schema(0, 35), new Vector2Schema(0, -35), new Vector2Schema(35, 0), new Vector2Schema(-35, 0)];
+  spawnPointAngles = [180, 0, -90, 90];
 
   constructor() {
     super();
   }
 
   createPlayer(sessionId: string, username: string) : PlayerSchema {
-    const spawnPoint = this.getSpawnPoint();
+    const spawnIndex = this.getSpawnPointIndex();
+    const spawnPoint = this.spawnPoints[spawnIndex];
+    const spawnAngle = this.spawnPointAngles[spawnIndex];
     const skinId = this.getRandomSkinId();
-    const player = new PlayerSchema(username, spawnPoint, skinId, 0);
+    const player = new PlayerSchema(username, spawnPoint, spawnAngle, skinId, 0);
     this.players.set(sessionId, player);
     return player;
   }
@@ -41,8 +45,9 @@ export class GameRoomState extends Schema {
     console.log(`${attackerId} kill ${killedId}!`);
   }
   
-  getSpawnPoint() : Vector2Schema {
-    return new Vector2Schema(0, 0);
+
+  getSpawnPointIndex() : number {
+    return Math.floor(Math.random() * this.spawnPoints.length);
   }
 
   getRandomSkinId() : number {
