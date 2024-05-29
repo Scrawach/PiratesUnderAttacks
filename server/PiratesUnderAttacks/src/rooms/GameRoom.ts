@@ -61,7 +61,8 @@ export class GameRoom extends Room<GameRoomState> {
 
   respawn(targetId: string) {
     const targetPlayer = this.state.players.get(targetId);
-    const respawnPosition = this.state.getSpawnPoint();
+    const respawnPositionIndex = this.state.getSpawnPointIndex();
+    const respawnPosition = this.state.spawnPoints[respawnPositionIndex];
     this.clients.getById(targetId).send("respawn", respawnPosition);
     targetPlayer.currentHealth = targetPlayer.totalHealth;
   }
