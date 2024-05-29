@@ -1,3 +1,5 @@
+using CodeBase.Gameplay.Services;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace CodeBase.Gameplay
@@ -8,25 +10,23 @@ namespace CodeBase.Gameplay
         [SerializeField] private ShipArmaments _armaments;
 
         private Camera _camera;
+        private InputService _input;
+        
+        [Inject]
+        public void Construct(InputService input) => 
+            _input = input;
 
         private void Awake() => 
             _camera = Camera.main;
 
         private void Update()
         {
-            var inputRelativeByCamera = _camera.transform.TransformDirection(InputAxis());
+            var inputRelativeByCamera = _camera.transform.TransformDirection(_input.InputAxis());
             inputRelativeByCamera.y = 0;
             _ship.LookAt(_ship.transform.position + inputRelativeByCamera.normalized);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (_input.IsFire())
                 _armaments.TryFire();
         }
-
-        private static Vector3 InputAxis() =>
-            new(
-                x: Input.GetAxis("Horizontal"),
-                y: 0,
-                z: Input.GetAxis("Vertical")
-            );
     }
 }

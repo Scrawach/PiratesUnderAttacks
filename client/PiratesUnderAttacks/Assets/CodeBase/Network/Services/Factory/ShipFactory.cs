@@ -11,6 +11,7 @@ namespace CodeBase.Network.Services.Factory
 {
     public class ShipFactory
     {
+        private const string PlayerShipPath = "Ships/Player Ship";
         private const string RemoteShipPath = "Ships/Remote Ship";
         
         private readonly Assets _assets;
@@ -29,18 +30,18 @@ namespace CodeBase.Network.Services.Factory
         public Ship CreatePlayerShip(string id, PlayerSchema schema)
         {
             Debug.Log($"Create player {id}");
-            return CreateShip(id, schema);
+            return CreateShip(id, schema, PlayerShipPath);
         }
 
         public Ship CreateRemoteShip(string id, PlayerSchema schema)
         {
             Debug.Log($"Create remote {id}");
-            return CreateShip(id, schema);
+            return CreateShip(id, schema, RemoteShipPath);
         }
 
-        public Ship CreateShip(string id, PlayerSchema schema)
+        public Ship CreateShip(string id, PlayerSchema schema, string pathToPrefab)
         {
-            var prefab = _assets.Load<RemoteShip>(RemoteShipPath);
+            var prefab = _assets.Load<RemoteShip>(pathToPrefab);
             var skinMaterial = _skinStaticData.ForShipSkin(schema.skinId);
             var remoteShip = Object.Instantiate(prefab, schema.position.ToVector3(), Quaternion.identity);
             

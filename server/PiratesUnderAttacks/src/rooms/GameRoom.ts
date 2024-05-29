@@ -7,6 +7,10 @@ export class GameRoom extends Room<GameRoomState> {
   onCreate (options: any) {
     console.log("Game Room created!")
     this.setState(new GameRoomState());
+
+    this.onMessage("move", (client, data) => {
+      console.log(data);
+    });
   }
 
   onJoin (client: Client, options: any) {

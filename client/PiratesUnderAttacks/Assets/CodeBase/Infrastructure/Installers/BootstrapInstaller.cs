@@ -1,3 +1,4 @@
+using CodeBase.Gameplay.Services;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Network.Services;
 using CodeBase.Network.Services.Factory;
@@ -30,6 +31,7 @@ namespace CodeBase.Infrastructure.Installers
         {
             builder.AddSingleton(typeof(ShipRegistry));
             builder.AddSingleton(typeof(ShipFactory));
+            builder.AddSingleton(typeof(InputService));
         }
 
         private void InstallMetaServices(ContainerBuilder builder)
@@ -56,6 +58,8 @@ namespace CodeBase.Infrastructure.Installers
             
             builder.AddSingleton(typeof(NetworkPlayerInitializer));
             builder.AddSingleton(typeof(NetworkStateInitializer), typeof(INetworkRoomHandler));
+
+            builder.AddSingleton(typeof(NetworkTransmitter), typeof(NetworkTransmitter), typeof(INetworkRoomHandler));
         }
     }
 }
