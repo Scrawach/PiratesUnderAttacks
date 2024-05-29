@@ -11,6 +11,9 @@ namespace CodeBase.Network.Services.Ships
         public ShipRegistry() => 
             _ships = new Dictionary<string, ShipInfo>();
 
+        public ShipInfo this[string id] => 
+            _ships[id];
+        
         public event Action Updated;
         public event Action<ShipInfo> Added;
         public event Action<ShipInfo> Removed;

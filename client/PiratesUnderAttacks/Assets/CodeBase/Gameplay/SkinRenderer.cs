@@ -13,6 +13,8 @@ namespace CodeBase.Gameplay
         {
             foreach (var skin in _skins) 
                 skin.material = target;
+            
+            ChangeHealthBarColor(target.color);
         }
 
         public void ChangeHealthBarColor(Color target) => 

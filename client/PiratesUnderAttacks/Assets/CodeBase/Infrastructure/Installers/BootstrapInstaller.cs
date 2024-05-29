@@ -17,7 +17,13 @@ namespace CodeBase.Infrastructure.Installers
             InstallNetworkServices(builder);
             InstallMetaServices(builder);
             InstallGameplayServices(builder);
+            InstallInfrastructureServices(builder);
             InstallGame(builder);
+        }
+
+        private void InstallInfrastructureServices(ContainerBuilder builder)
+        {
+            builder.AddSingleton(typeof(Injector));
         }
 
         private void InstallGameplayServices(ContainerBuilder builder)
