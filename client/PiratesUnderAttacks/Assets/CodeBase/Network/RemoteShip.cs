@@ -11,6 +11,7 @@ namespace CodeBase.Network
     public class RemoteShip : MonoBehaviour
     {
         [SerializeField] private Ship _ship;
+        [SerializeField] private Health _health;
         
         private readonly List<Action> _disposes = new();
         private Vector3 _previousInput;
@@ -20,8 +21,17 @@ namespace CodeBase.Network
             schema.OnPositionChange(OnPositionChanged).AddTo(_disposes);
             schema.OnRotationChange(OnRotationChanged).AddTo(_disposes);
             schema.OnInputChange(OnInputChanged).AddTo(_disposes);
+            schema.OnCurrentHealthChange(OnCurrentHealthChanged).AddTo(_disposes);
+            schema.OnTotalHealthChange(OnTotalHealthChanged).AddTo(_disposes);
         }
         
+        private void OnCurrentHealthChanged(byte current, byte previous) => 
+            _health.SetCurrentHealth(current);
+
+        private void OnTotalHealthChanged(byte current, byte previous) => 
+            _health.SetTotalHealth(current);
+
+
         private void OnPositionChanged(Vector2Schema current, Vector2Schema previous)
         {
             var distance = Vector3.Distance(current.ToVector3(), _ship.transform.position);

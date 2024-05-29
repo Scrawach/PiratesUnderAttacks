@@ -12,10 +12,14 @@ namespace CodeBase.Gameplay
         
         private float _elapsedDistance;
 
+        private string _ownerId;
         private Vector3 _startMovement;
 
-        public void Launch(Vector3 startMovement) => 
+        public void Launch(string ownerId, Vector3 startMovement)
+        {
+            _ownerId = ownerId;
             _startMovement = startMovement;
+        }
 
         private void Update()
         {
@@ -33,7 +37,7 @@ namespace CodeBase.Gameplay
         {
             if (other.TryGetComponent(out Health health))
             {
-                health.TakeDamage(_damage);
+                health.TakeDamage(_damage, _ownerId);
                 ProcessBulletDeath();
             }
         }

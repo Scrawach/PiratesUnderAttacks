@@ -10,6 +10,8 @@ namespace CodeBase.Network.Services
     public class NetworkTransmitter : INetworkRoomHandler
     {
         private const string MovementEndPoint = "move";
+        private const string FireEndPoint = "fire";
+        private const string TakeDamageEndPoint = "takeDamage";
 
         private ColyseusRoom<GameRoomState> _room;
 
@@ -30,5 +32,15 @@ namespace CodeBase.Network.Services
 
             _room.Send(MovementEndPoint, message);
         }
+
+        public void SendFire() => 
+            _room.Send(FireEndPoint, _room.SessionId);
+
+        public void SendTakeDamage(string attackerId, int currentHealth) => 
+            _room.Send(TakeDamageEndPoint, new Dictionary<string, object>()
+            {
+                [nameof(attackerId)] = attackerId,
+                [nameof(currentHealth)] = currentHealth
+            });
     }
 }

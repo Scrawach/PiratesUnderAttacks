@@ -26,7 +26,9 @@ namespace CodeBase.Gameplay
             _ship.LookAt(_ship.transform.position + _input.InputAxis().normalized);
 
             if (_input.IsFire())
+            {
                 _armaments.TryFire();
+            }
         }
     }
 }

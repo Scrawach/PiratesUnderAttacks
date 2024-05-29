@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Network.Services;
 using CodeBase.Network.Services.Factory;
 using CodeBase.Network.Services.Handlers;
+using CodeBase.Network.Services.Messages;
 using CodeBase.Network.Services.Ships;
 using CodeBase.Services;
 using Reflex.Core;
@@ -60,6 +61,8 @@ namespace CodeBase.Infrastructure.Installers
             builder.AddSingleton(typeof(NetworkStateInitializer), typeof(INetworkRoomHandler));
 
             builder.AddSingleton(typeof(NetworkTransmitter), typeof(NetworkTransmitter), typeof(INetworkRoomHandler));
+            
+            builder.AddSingleton(typeof(FireMessageHandler), typeof(INetworkRoomHandler));
         }
     }
 }

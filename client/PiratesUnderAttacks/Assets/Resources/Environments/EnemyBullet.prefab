@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8054644941161994712}
   - component: {fileID: 1066549434668608991}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,8 +159,8 @@ GameObject:
   - component: {fileID: 171487757681464846}
   - component: {fileID: 8604275204376076712}
   - component: {fileID: 7239449881816753588}
-  m_Layer: 0
-  m_Name: Bullet
+  m_Layer: 9
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,10 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c50c9399244831b0aaaa05a46b4f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 2
+  _damage: 10
   _speed: 20
   _effectiveDistance: 15
-  _gravityDamp: 2
   _vfx: {fileID: 482801435431571935, guid: 95275c8e9ac517277b474f0ffe018412, type: 3}
 --- !u!114 &7239449881816753588
 MonoBehaviour:
@@ -280,7 +279,7 @@ GameObject:
   - component: {fileID: 8647338651869153209}
   - component: {fileID: 6292417857555268240}
   - component: {fileID: 2141531003662791768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

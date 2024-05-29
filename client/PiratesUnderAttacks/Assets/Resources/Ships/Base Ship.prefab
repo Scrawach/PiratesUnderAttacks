@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888a38d9603a497a9db3dc22362a5390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uniqueId: {fileID: 7995991709113182186}
   _ship: {fileID: 3043535218191639995}
   _cannons:
   - {fileID: 5618954336072462224}

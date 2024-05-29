@@ -29,8 +29,16 @@ export class GameRoomState extends Schema {
 
   removePlayer(sessionId: string) {
     if (this.players.has(sessionId)) {
+      const player = this.players.get(sessionId);
+      this.availableSkinIds.add(player.skinId);
       this.players.delete(sessionId);
     }
+  }
+
+  killPlayerBySomeone(killedId: string, attackerId: string) {
+    const attackerPlayer = this.players.get(attackerId);
+    attackerPlayer.score += 1;
+    console.log(`${attackerId} kill ${killedId}!`);
   }
 
   getSpawnPoint() : Vector2Schema {

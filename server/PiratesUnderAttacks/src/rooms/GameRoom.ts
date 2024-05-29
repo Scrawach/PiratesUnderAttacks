@@ -15,6 +15,26 @@ export class GameRoom extends Room<GameRoomState> {
       const input = new Vector2Schema(data.input.x, data.input.y);
       this.state.movePlayer(client.sessionId, position, rotation, input);
     });
+
+    this.onMessage("fire", (client, data) => {
+      console.log("fire " + data)
+      this.broadcast("fire", data);
+    })
+
+    this.onMessage("takeDamage", (client, data) => {
+      console.log(data)
+      const targetId = client.sessionId;
+      const attackerId = data.attackerId;
+      const currentHealth = data.currentHealth;
+
+      const targetPlayer = this.state.players.get(targetId);
+      targetPlayer.currentHealth = currentHealth;
+
+      if (targetPlayer.currentHealth <= 0) {
+        this.state.killPlayerBySomeone(targetId, attackerId);
+      }
+
+    })
   }
 
   onJoin (client: Client, options: any) {
