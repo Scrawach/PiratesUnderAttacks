@@ -230,6 +230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuName: leaderboard-screen
   _rootDocument: {fileID: 5002035796972304936}
+  _leaderItemTreeAsset: {fileID: 9197481963319205126, guid: 883094470102e2e4ca30a1cede5d33ff, type: 3}
+  _maxCountOfLeaders: 6
 --- !u!1 &2328629095614114153
 GameObject:
   m_ObjectHideFlags: 0

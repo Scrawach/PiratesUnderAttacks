@@ -1,5 +1,6 @@
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Network.Services;
+using CodeBase.Services;
 using Reflex.Core;
 using UnityEngine;
 
@@ -11,7 +12,14 @@ namespace CodeBase.Infrastructure.Installers
         {
             InstallAssetManagement(builder);
             InstallNetworkServices(builder);
+            InstallMetaServices(builder);
             InstallGame(builder);
+        }
+        
+        private void InstallMetaServices(ContainerBuilder builder)
+        {
+            builder.AddSingleton(typeof(SkinStaticData));
+            builder.AddSingleton(typeof(LeaderboardService));
         }
 
         private static void InstallGame(ContainerBuilder builder) => 
