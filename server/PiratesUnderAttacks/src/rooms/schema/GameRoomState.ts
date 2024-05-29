@@ -6,12 +6,10 @@ export class GameRoomState extends Schema {
 
   @type({map: PlayerSchema}) players = new MapSchema<PlayerSchema>();
 
-  availableSkinIds = new Set<number>();
+  availableSkinIds = new Set<number>([0, 1]);
 
   constructor() {
     super();
-    this.availableSkinIds.add(0);
-    this.availableSkinIds.add(1);
   }
 
   createPlayer(sessionId: string, username: string) : PlayerSchema {
