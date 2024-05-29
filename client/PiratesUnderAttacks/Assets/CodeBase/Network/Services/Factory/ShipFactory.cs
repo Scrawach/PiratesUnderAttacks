@@ -36,31 +36,32 @@ namespace CodeBase.Network.Services.Factory
         public Ship CreateRemoteShip(string id, PlayerSchema schema)
         {
             Debug.Log($"Create remote {id}");
-            return CreateShip(id, schema, RemoteShipPath);
+            var ship = CreateShip(id, schema, RemoteShipPath);
+            ship.GetComponent<RemoteShip>().Initialize(schema);
+            return ship;
         }
 
         public Ship CreateShip(string id, PlayerSchema schema, string pathToPrefab)
         {
-            var prefab = _assets.Load<RemoteShip>(pathToPrefab);
+            var prefab = _assets.Load<GameObject>(pathToPrefab);
             var skinMaterial = _skinStaticData.ForShipSkin(schema.skinId);
-            var remoteShip = Object.Instantiate(prefab, schema.position.ToVector3(), Quaternion.identity);
+            var ship = Object.Instantiate(prefab, schema.position.ToVector3(), Quaternion.identity);
             
-            _injector.Inject(remoteShip);
+            _injector.Inject(ship);
             
-            _registry.Add(new ShipInfo(id, remoteShip, schema));
+            _registry.Add(new ShipInfo(id, ship, schema));
             
-            remoteShip.GetComponent<UniqueId>().Construct(id);
-            remoteShip.GetComponent<SkinRenderer>().ChangeTo(skinMaterial);
-            remoteShip.Initialize(schema);
+            ship.GetComponent<UniqueId>().Construct(id);
+            ship.GetComponent<SkinRenderer>().ChangeTo(skinMaterial);
             
-            return remoteShip.GetComponent<Ship>();
+            return ship.GetComponent<Ship>();
         }
 
         public bool RemoveShip(string id)
         {
             var ship = _registry[id];
             _registry.Remove(id);
-            Object.Destroy(ship.Ship.gameObject);
+            Object.Destroy(ship.Instance.gameObject);
             return true;
         }
     }
