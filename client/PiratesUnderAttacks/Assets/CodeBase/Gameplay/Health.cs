@@ -36,5 +36,11 @@ namespace CodeBase.Gameplay
             Current = current;
             TakeDamage(0);
         }
+
+        public void Restore()
+        {
+            Current = Max;
+            TakeDamage(0);
+        }
     }
 }

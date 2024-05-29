@@ -41,6 +41,10 @@ export class GameRoomState extends Schema {
     console.log(`${attackerId} kill ${killedId}!`);
   }
 
+  respawn(targetId: string) {
+    
+  }
+
   getSpawnPoint() : Vector2Schema {
     return new Vector2Schema(0, 0);
   }

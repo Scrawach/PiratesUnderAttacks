@@ -32,6 +32,7 @@ export class GameRoom extends Room<GameRoomState> {
 
       if (targetPlayer.currentHealth <= 0) {
         this.state.killPlayerBySomeone(targetId, attackerId);
+        this.respawn(targetId);
       }
 
     })
@@ -49,6 +50,13 @@ export class GameRoom extends Room<GameRoomState> {
 
   onDispose() {
     console.log("room", this.roomId, "disposing...");
+  }
+
+  respawn(targetId: string) {
+    const targetPlayer = this.state.players.get(targetId);
+    const respawnPosition = this.state.getSpawnPoint();
+    this.clients.getById(targetId).send("respawn", respawnPosition);
+    targetPlayer.currentHealth = targetPlayer.totalHealth;
   }
 
 }

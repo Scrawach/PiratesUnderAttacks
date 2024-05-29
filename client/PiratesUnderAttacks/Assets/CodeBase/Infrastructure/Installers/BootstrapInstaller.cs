@@ -63,6 +63,7 @@ namespace CodeBase.Infrastructure.Installers
             builder.AddSingleton(typeof(NetworkTransmitter), typeof(NetworkTransmitter), typeof(INetworkRoomHandler));
             
             builder.AddSingleton(typeof(FireMessageHandler), typeof(INetworkRoomHandler));
+            builder.AddSingleton(typeof(RespawnMessageHandler), typeof(INetworkRoomHandler));
         }
     }
 }

@@ -15,5 +15,8 @@ namespace CodeBase.Network.Services.Handlers
 
         public bool IsLocalPlayer(string id) => 
             _room.SessionId == id;
+
+        public string PlayerId => 
+            _room.SessionId;
     }
 }

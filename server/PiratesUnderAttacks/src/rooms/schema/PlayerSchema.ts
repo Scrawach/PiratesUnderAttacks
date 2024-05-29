@@ -8,8 +8,8 @@ export class PlayerSchema extends Schema {
   @type(Vector2Schema) input: Vector2Schema;
   @type("uint8") skinId: number;
   @type("uint16") score: number;
-  @type("uint8") currentHealth: number;
-  @type("uint8") totalHealth: number;
+  @type("uint8") currentHealth: number = 100;
+  @type("uint8") totalHealth: number = 100;
 
   constructor(username: string, position: Vector2Schema, skinId: number, score: number) {
     super();
