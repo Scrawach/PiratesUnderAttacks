@@ -16,10 +16,16 @@ namespace CodeBase.Generated {
 		[Type(1, "ref", typeof(Vector2Schema))]
 		public Vector2Schema position = new Vector2Schema();
 
-		[Type(2, "uint8")]
+		[Type(2, "ref", typeof(Vector2Schema))]
+		public Vector2Schema rotation = new Vector2Schema();
+
+		[Type(3, "ref", typeof(Vector2Schema))]
+		public Vector2Schema input = new Vector2Schema();
+
+		[Type(4, "uint8")]
 		public byte skinId = default(byte);
 
-		[Type(3, "uint16")]
+		[Type(5, "uint16")]
 		public ushort score = default(ushort);
 
 		/*
@@ -47,6 +53,30 @@ namespace CodeBase.Generated {
 			return () => {
 				__callbacks.RemovePropertyCallback(nameof(position));
 				__positionChange -= __handler;
+			};
+		}
+
+		protected event PropertyChangeHandler<Vector2Schema> __rotationChange;
+		public Action OnRotationChange(PropertyChangeHandler<Vector2Schema> __handler, bool __immediate = true) {
+			if (__callbacks == null) { __callbacks = new SchemaCallbacks(); }
+			__callbacks.AddPropertyCallback(nameof(this.rotation));
+			__rotationChange += __handler;
+			if (__immediate && this.rotation != null) { __handler(this.rotation, null); }
+			return () => {
+				__callbacks.RemovePropertyCallback(nameof(rotation));
+				__rotationChange -= __handler;
+			};
+		}
+
+		protected event PropertyChangeHandler<Vector2Schema> __inputChange;
+		public Action OnInputChange(PropertyChangeHandler<Vector2Schema> __handler, bool __immediate = true) {
+			if (__callbacks == null) { __callbacks = new SchemaCallbacks(); }
+			__callbacks.AddPropertyCallback(nameof(this.input));
+			__inputChange += __handler;
+			if (__immediate && this.input != null) { __handler(this.input, null); }
+			return () => {
+				__callbacks.RemovePropertyCallback(nameof(input));
+				__inputChange -= __handler;
 			};
 		}
 
@@ -78,6 +108,8 @@ namespace CodeBase.Generated {
 			switch (change.Field) {
 				case nameof(username): __usernameChange?.Invoke((string) change.Value, (string) change.PreviousValue); break;
 				case nameof(position): __positionChange?.Invoke((Vector2Schema) change.Value, (Vector2Schema) change.PreviousValue); break;
+				case nameof(rotation): __rotationChange?.Invoke((Vector2Schema) change.Value, (Vector2Schema) change.PreviousValue); break;
+				case nameof(input): __inputChange?.Invoke((Vector2Schema) change.Value, (Vector2Schema) change.PreviousValue); break;
 				case nameof(skinId): __skinIdChange?.Invoke((byte) change.Value, (byte) change.PreviousValue); break;
 				case nameof(score): __scoreChange?.Invoke((ushort) change.Value, (ushort) change.PreviousValue); break;
 				default: break;

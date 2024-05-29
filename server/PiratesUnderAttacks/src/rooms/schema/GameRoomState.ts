@@ -20,6 +20,13 @@ export class GameRoomState extends Schema {
     return player;
   }
 
+  movePlayer(sessionId: string, position: Vector2Schema, rotation: Vector2Schema, input: Vector2Schema) {
+    const player = this.players.get(sessionId);
+    player.position = position;
+    player.rotation = rotation;
+    player.input = input;
+  }
+
   removePlayer(sessionId: string) {
     if (this.players.has(sessionId)) {
       this.players.delete(sessionId);

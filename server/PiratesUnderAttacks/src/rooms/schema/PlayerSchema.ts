@@ -4,6 +4,8 @@ import { Vector2Schema } from "./Vector2Schema";
 export class PlayerSchema extends Schema {
   @type("string") username: string;
   @type(Vector2Schema) position: Vector2Schema;
+  @type(Vector2Schema) rotation: Vector2Schema;
+  @type(Vector2Schema) input: Vector2Schema;
   @type("uint8") skinId: number;
   @type("uint16") score: number;
 

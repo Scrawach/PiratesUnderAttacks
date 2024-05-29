@@ -9,7 +9,7 @@ export class GameRoom extends Room<GameRoomState> {
     this.setState(new GameRoomState());
 
     this.onMessage("move", (client, data) => {
-      console.log(data);
+      this.state.movePlayer(client.sessionId, data.position, data.rotation, data.input);
     });
   }
 
