@@ -1,15 +1,18 @@
+using CodeBase.Gameplay.Services;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace CodeBase.Gameplay
 {
     public class LookAtCamera : MonoBehaviour
     {
-        private Camera _camera;
+        private CameraFollow _camera;
 
-        private void Awake() => 
-            _camera = Camera.main;
-
+        [Inject]
+        public void Construct(CameraFollow cameraFollow) => 
+            _camera = cameraFollow;
+        
         private void LateUpdate() => 
-            transform.LookAt(_camera.transform);
+            transform.LookAt(_camera.VirtualCamera.transform);
     }
 }
