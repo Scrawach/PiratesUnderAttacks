@@ -53,12 +53,14 @@ namespace CodeBase.Network.Services.Factory
             
             ship.GetComponent<UniqueId>().Construct(id);
             ship.GetComponent<SkinRenderer>().ChangeTo(skinMaterial);
+            ship.GetComponent<NetworkLeader>().Initialize(schema);
             
             return ship.GetComponent<Ship>();
         }
 
         public bool RemoveShip(string id)
         {
+            Debug.Log($"Removed {id}");
             var ship = _registry[id];
             _registry.Remove(id);
             Object.Destroy(ship.Instance.gameObject);
