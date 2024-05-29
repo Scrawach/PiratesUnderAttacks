@@ -42,7 +42,7 @@ namespace CodeBase.Network
 
         private void OnRotationChanged(float current, float previous)
         {
-            //_ship.transform.eulerAngles = new Vector3(0f, current, 0f);
+            _ship.transform.eulerAngles = new Vector3(0f, current, 0f);
         }
 
         private void OnInputChanged(Vector2Schema current, Vector2Schema previous) => 
