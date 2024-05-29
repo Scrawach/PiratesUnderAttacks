@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CodeBase.Generated;
 
 namespace CodeBase.Services
 {
@@ -17,15 +18,15 @@ namespace CodeBase.Services
 
         public event Action Updated;
         
-        public void CreateLeader(string playerId)
+        public void CreateLeader(string playerId, PlayerSchema schema)
         {
-            var skin = _staticData.ForShipSkin(0);
+            var skin = _staticData.ForShipSkin(schema.skinId);
             
             _leaders[playerId] = new LeaderInfo()
             {
                 Position = _leaders.Count + 1,
-                Username = "username",
-                Score = 10,
+                Username = schema.username,
+                Score = schema.score,
                 Color = skin.color,
             };
             Updated?.Invoke();
