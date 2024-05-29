@@ -5,6 +5,7 @@ export class GameRoom extends Room<GameRoomState> {
   maxClients = 4;
 
   onCreate (options: any) {
+    console.log("Game Room created!")
     this.setState(new GameRoomState());
 
     this.onMessage("type", (client, message) => {
@@ -15,7 +16,7 @@ export class GameRoom extends Room<GameRoomState> {
   }
 
   onJoin (client: Client, options: any) {
-    console.log(client.sessionId, "joined!");
+    console.log(client.sessionId, "joined!", options);
   }
 
   onLeave (client: Client, consented: boolean) {
