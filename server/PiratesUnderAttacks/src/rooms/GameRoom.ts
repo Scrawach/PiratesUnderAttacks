@@ -7,16 +7,11 @@ export class GameRoom extends Room<GameRoomState> {
   onCreate (options: any) {
     console.log("Game Room created!")
     this.setState(new GameRoomState());
-
-    this.onMessage("type", (client, message) => {
-      //
-      // handle "type" message
-      //
-    });
   }
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!", options);
+    this.state.createPlayer(client.sessionId, options.username);
   }
 
   onLeave (client: Client, consented: boolean) {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Generated;
+using CodeBase.Network.Services.Handlers;
 using Colyseus;
 using Cysharp.Threading.Tasks;
 
@@ -11,17 +12,39 @@ namespace CodeBase.Network.Services
         private const string GameRoomName = "GameRoom";
 
         private readonly NetworkStaticData _staticData;
-        
+        private readonly IEnumerable<INetworkRoomHandler> _handlers;
+
         private ColyseusRoom<GameRoomState> _room;
 
-        public NetworkClient(NetworkStaticData staticData) => 
+        public NetworkClient(NetworkStaticData staticData, IEnumerable<INetworkRoomHandler> handlers)
+        {
             _staticData = staticData;
+            _handlers = handlers;
+        }
 
-        public async UniTask<ConnectionResult> Connect(string username) => 
-            await TryConnect(username);
+        public async UniTask<ConnectionResult> Connect(string username)
+        {
+            var connectionResult = await TryConnect(username);
 
-        public async UniTask Disconnect() => 
+            if (connectionResult.IsFailure)
+                return connectionResult;
+
+            foreach (var handler in _handlers) 
+                handler.Handle(_room);
+            
+            return connectionResult;
+        }
+
+        public async UniTask Disconnect()
+        {
+            if (_room == null)
+                return;
+            
             await _room.Leave();
+
+            foreach (var handler in _handlers) 
+                handler.Dispose();
+        }
 
         private async UniTask<ConnectionResult> TryConnect(string username)
         {
